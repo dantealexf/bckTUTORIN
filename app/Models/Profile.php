@@ -9,7 +9,7 @@ class Profile extends Model
 {
 
     protected $fillable = [
-        'status_id','dni','description','valoration','message','viewed'
+        'dni','description','valoration','message','viewed','verified','request'
     ];
 
     public function user()
@@ -27,9 +27,9 @@ class Profile extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function file()
+    public function documents()
     {
-        return $this->morphToMany(File::class, 'fileable');
+        return $this->morphToMany(Document::class, 'documentable');
     }
 
     public function tags()

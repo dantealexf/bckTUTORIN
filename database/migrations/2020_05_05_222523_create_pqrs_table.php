@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePqrsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('pqrs', function (Blueprint $table) {
@@ -19,7 +15,8 @@ class CreatePqrsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['REQUEST', 'NAGGING','CLAIM','DONE'])->default('REQUEST');
+            $table->enum('type', ['REQUEST', 'NAGGING','CLAIM','DONE'])->default('REQUEST');
+            $table->enum('status', ['PENDING','DONE'])->default('PENDING');
 
             $table->timestamps();
 

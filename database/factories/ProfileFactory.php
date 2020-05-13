@@ -10,6 +10,5 @@ $factory->define(Profile::class, function (Faker $faker) {
         'dni'         => $faker->unique()->word,
         'description' => $faker->text,
         'valoration'  => $faker->numberBetween(0,5),
-        'viewed'      => false,
     ];
 });

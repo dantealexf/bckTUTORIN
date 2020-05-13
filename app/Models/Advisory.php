@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class Advisory extends Model
 {
     protected $fillable = [
-        'user_id', 'category_id','level_id','title', 'url','delivery','price','excerpt','body'
+        'user_id', 'category_id','level_id','title', 'url','delivery','price','hours','body','zone_id','virtual'
     ];
 
     protected $dates = ['delivery'];
@@ -35,6 +35,11 @@ class Advisory extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class);
     }
 
     public function level()

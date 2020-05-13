@@ -20,17 +20,31 @@
                         <h3>{{ $advisory->title }}</h3>
                     </div>
                     <div class="col-md-6">
-                        <h3 class="text-primary">Precio : </h3>
+                        <h3 class="text-primary">Precio x hora: </h3>
                         <h3>{{ $advisory->price }}</h3>
                     </div>
                     <div class="col-md-6">
                         <h3 class="text-primary">Fecha de la asesoría : </h3>
                         <h3>{{ $advisory->delivery->format('M/d/Y') }}</h3>
                     </div>
-                    <div class="col-md-12">
-                        <h3 class="text-primary">Resumen : </h3>
-                        <h3>{{ $advisory->excerpt }}</h3>
+                    <div class="col-md-6">
+                        <h3 class="text-primary">Horas : </h3>
+                        <h3>{{ $advisory->hours }}</h3>
                     </div>
+                    <div class="col-md-6">
+                        <h3 class="text-primary">Tipo : </h3>
+                        @if($advisory->virtual == true)
+                            <h3>Virtual</h3>
+                        @else
+                            <h3>A Domicilió </h3>
+                        @endif
+                    </div>
+                    @if($advisory->virtual == false)
+                        <div class="col-md-6">
+                            <h3 class="text-primary">Zona : </h3>
+                            <h3>{{ $advisory->zone->name }}</h3>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <h3 class="text-primary">Detalle : </h3>
                         <p>

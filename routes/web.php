@@ -17,10 +17,25 @@ Route::group([
     })->name('inicio');
     Route::resource('students','StudentController');
     Route::resource('teachers','TeacherController');
+
+    Route::post('fileDocument','TeacherController@addFile')->name('teachers.file');
+    Route::post('message','TeacherController@message')->name('teachers.message');
+    Route::post('viewed','TeacherController@viewed')->name('teachers.viewed');
+    Route::post('verify','TeacherController@verifyDocument')->name('teachers.verify');
+    Route::get('searchTeacher/{search}', 'TeacherController@showStatuses')->name('teacher.status')->where('search', '.*');
+
+
     Route::resource('task','TaskController');
     Route::resource('advisory','AdvisoryController');
     Route::resource('course','CourseController');
+    Route::resource('pqr','PQRController');
+
+    Route::get('searchAdvisory/{search}', 'AdvisoryController@showStatuses')->name('advisory.status')->where('search', '.*');
+    Route::get('searchTask/{search}', 'TaskController@showStatuses')->name('task.status')->where('search', '.*');
+    Route::get('searchCourses/{search}', 'CourseController@showStatuses')->name('courses.status')->where('search', '.*');
+
     Route::resource('category','CategoryController');
+    Route::resource('zone','ZoneController');
     Route::resource('tag','TagController');
     Route::resource('level','LevelController');
 

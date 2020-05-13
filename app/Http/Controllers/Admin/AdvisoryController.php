@@ -9,6 +9,7 @@ use App\Models\Advisory;
 use App\Models\Category;
 use App\Models\Level;
 use App\Models\Tag;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -22,12 +23,21 @@ class AdvisoryController extends Controller
         return view('admin.advisories.index',compact('advisories'));
     }
 
+    public function showStatuses($status)
+    {
+        $advisories = (empty($status)) ?  null : Advisory::where('status',$status)->get();
+        if($advisories == null)
+            abort(404);
+        return view('admin.advisories.index',compact('advisories'));
+    }
+
     public function create()
     {
         return view('admin.advisories.forms.create',[
             'user'       => Auth::user(),
             'levels'     => Level::all(),
             'tags'       => Tag::all(),
+            'zones'      => Zone::all(),
             'categories' => Category::all()
         ]);
     }
@@ -35,16 +45,18 @@ class AdvisoryController extends Controller
     public function store(AdvisoryStoreRequest $request)
     {
         $user = Auth::user();
+        $zone = ($request->get('type') == 1) ? $request->get('zone') : null;
 
         $advisory = Advisory::create([
             'user_id'     => $user->id,
             'category_id' => $request->get('category'),
             'level_id'    => $request->get('level'),
+            'zone_id'     => $zone,
             'hours'       => $request->get('hours'),
             'title'       => $request->get('title'),
             'delivery'    => $request->get('delivery'),
             'price'       => $request->get('price'),
-            'excerpt'     => $request->get('excerpt'),
+            'virtual'     => ($request->get('type') == 0),
             'body'        => $request->get('body'),
         ]);
 
@@ -65,7 +77,7 @@ class AdvisoryController extends Controller
         {
             $photo = $request->file('photo')->store('public/advisory');
             $advisory->image()->create([
-                'url' => Storage::url($photo)
+                'url'  => Storage::url($photo),
             ]);
         }
 
@@ -73,7 +85,7 @@ class AdvisoryController extends Controller
         {
             $document = $request->file('document')->store('public/advisory');
             $advisory->file()->create([
-                'url' => Storage::url($document)
+                'url' => Storage::url($document),
             ]);
         }
         return redirect()->route('advisory.index')->withFlash('Asesoría creada');
@@ -93,7 +105,6 @@ class AdvisoryController extends Controller
     {
         $advisory->update([
             'title'   => $request->get('title'),
-            'excerpt' => $request->get('excerpt'),
             'body'    => $request->get('body'),
         ]);
 

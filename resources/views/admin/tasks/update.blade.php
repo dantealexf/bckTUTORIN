@@ -36,12 +36,6 @@
                                 <h3>{{ $task->delivery->format('M/d/Y') }}</h3>
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="excerpt">Resumen :</label>
-                                <textarea class="form-control form-control-user" name="excerpt" id="excerpt"
-                                          placeholder="Describen un poco la tarea...">{{ old('excerpt',$task->excerpt) }}</textarea>
-                                {!! $errors->first('excerpt', '<span class="form-text text-danger">:message</span>') !!}
-                            </div>
-                            <div class="form-group col-md-12">
                                 <label for="body">Detalle  :</label>
                                 <textarea rows="10" name="body" id="body" class="form-control form-control-user"
                                           placeholder="Ingresa el contendido completo de la publicación">{{ old('body',$task->body) }}</textarea>

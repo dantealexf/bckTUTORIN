@@ -22,8 +22,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Titulo</th>
+                            <th>Estado</th>
                             <th>Precio</th>
-                            <th>Resumen</th>
                             <th>Fecha de entrega</th>
                             <th>Fecha de creación</th>
                             <th>Acciones</th>
@@ -34,8 +34,26 @@
                             <tr>
                                 <td>{{ $task->id }}</td>
                                 <td>{{ $task->title }}</td>
+                                @if($task->status == "PUBLISHED")
+                                    <td>
+                                        <button class="btn btn-sm btn-info">
+                                            Publicado
+                                        </button>
+                                    </td>
+                                @elseif($task->status == "PENDING")
+                                    <td>
+                                        <button class="btn btn-sm btn-warning">
+                                            Pendiente
+                                        </button>
+                                    </td>
+                                @else
+                                    <td>
+                                        <button class="btn btn-sm btn-success">
+                                            Hecho
+                                        </button>
+                                    </td>
+                                @endif
                                 <td>{{ $task->price }}</td>
-                                <td>{{ $task->excerpt }}</td>
                                 <td>{{ $task->delivery }} </td>
                                 <td>{{ $task->created_at->format('M d Y') }}</td>
                                 <td>

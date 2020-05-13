@@ -30,14 +30,8 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Precio :</label>
-                            <input type="number" name="price" id="price" class="form-control form-control-user" value="{{ old('price',10000) }}" min="25000"/>
+                            <input type="number" name="price" id="price" class="form-control form-control-user" value="{{ old('price',25000) }}" min="25000"/>
                             {!! $errors->first('price', '<span class="form-text text-danger">:message</span>') !!}
-                        </div>
-                        <div class="form-group">
-                            <label for="excerpt">Resumen :</label>
-                            <textarea class="form-control form-control-user" name="excerpt" id="excerpt"
-                                      placeholder="Describen un poco la tarea...">{{ old('excerpt') }}</textarea>
-                            {!! $errors->first('excerpt', '<span class="form-text text-danger">:message</span>') !!}
                         </div>
                         <div class="form-group">
                             <label for="body">Detalle  :</label>

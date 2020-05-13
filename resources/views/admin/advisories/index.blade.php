@@ -3,7 +3,7 @@
 @section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">
-        Estas son las asesorías  publicadas con estado publicado.
+        Estas son las asesorías  publicadas.
     </h1>
 
     <!-- DataTales Example -->
@@ -22,8 +22,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Titulo</th>
+                            <th>Estado</th>
                             <th>Precio</th>
-                            <th>Resumen</th>
                             <th>Fecha de entrega</th>
                             <th>Fecha de creación</th>
                             <th>Acciones</th>
@@ -34,8 +34,26 @@
                             <tr>
                                 <td>{{ $advisory->id }}</td>
                                 <td>{{ $advisory->title }}</td>
+                                @if($advisory->status == "PUBLISHED")
+                                    <td>
+                                        <button class="btn btn-sm btn-info">
+                                            Publicado
+                                        </button>
+                                    </td>
+                                @elseif($advisory->status == "PENDING")
+                                    <td>
+                                        <button class="btn btn-sm btn-warning">
+                                            Pendiente
+                                        </button>
+                                    </td>
+                                @else
+                                    <td>
+                                        <button class="btn btn-sm btn-success">
+                                            Hecho
+                                        </button>
+                                    </td>
+                                @endif
                                 <td>{{ $advisory->price }}</td>
-                                <td>{{ $advisory->excerpt }}</td>
                                 <td>{{ $advisory->delivery }} </td>
                                 <td>{{ $advisory->created_at->format('M d Y') }}</td>
                                 <td>

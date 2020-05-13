@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         factory(App\Models\Tag::class, 40)->create();
         factory(App\Models\Category::class, 40)->create();
         factory(App\Models\Level::class, 3)->create();
-        factory(App\User::class, 100)->create()->each(function ($user){
+        factory(App\Models\Zone::class, 15)->create();
+        factory(App\User::class, 50)->create()->each(function ($user){
             $profile = $user->profile()->save(factory(App\Models\Profile::class)->make());
             $profile->location()->save(factory(App\Models\Location::class)->make());
             $profile->categories()->attach($this->array(rand(1, 3)));
@@ -28,6 +29,37 @@ class DatabaseSeeder extends Seeder
                 $user->comments()->save(factory(App\Models\Comment::class)->make());
             }
         });
+
+        factory(App\User::class, 25)->create()->each(function ($user){
+            $profile = $user->profile()->save(factory(App\Models\Profile::class)->make([
+                'request' => true
+            ]));
+            $profile->location()->save(factory(App\Models\Location::class)->make());
+            $profile->categories()->attach($this->array(rand(1, 3)));
+            $profile->tags()->attach($this->array(rand(1, 7)));
+
+            $number_comments = rand(1, 20);
+            for ($i = 0; $i < $number_comments; $i++) {
+                $user->comments()->save(factory(App\Models\Comment::class)->make());
+            }
+        });
+
+        factory(App\User::class, 25)->create()->each(function ($user){
+            $profile = $user->profile()->save(factory(App\Models\Profile::class)->make([
+                'request'  => false,
+                'verified' => true,
+            ]));
+            $profile->location()->save(factory(App\Models\Location::class)->make());
+            $profile->categories()->attach($this->array(rand(1, 3)));
+            $profile->tags()->attach($this->array(rand(1, 7)));
+
+            $number_comments = rand(1, 20);
+            for ($i = 0; $i < $number_comments; $i++) {
+                $user->comments()->save(factory(App\Models\Comment::class)->make());
+            }
+        });
+
+        factory(App\Models\Pqr::class, 60)->create();
 
         factory(App\Models\Task::class, 100)->create()->each(function ($task){
             $task->tags()->attach($this->array(rand(1, 30)));

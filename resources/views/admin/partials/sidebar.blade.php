@@ -3,8 +3,9 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('inicio') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+            {{--<i class="fas fa-laugh-wink"></i>--}}
+            <img width="50" src="/logo.png" alt="Logo tutor IN">
         </div>
         <div class="sidebar-brand-text mx-3">
             {{ config('app.name', 'TUTOR IN') }}
@@ -41,6 +42,9 @@
                 <a class="collapse-item" href="{{ route('task.index') }}">
                     <i class="fa fa-eye"></i> Ver todas las tareas
                 </a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
                 <a class="collapse-item" href="{{ route('task.create') }}">
                     <i class="fa fa-pencil-alt"></i> Crear una tarea
                 </a>
@@ -58,6 +62,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Acciones:</h6>
                 <a class="collapse-item" href="{{ route('advisory.index') }}"><i class="fa fa-eye"></i> ver todas las asesorías  </a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
                 <a class="collapse-item" href="{{ route('advisory.create') }}"><i class="fa fa-pencil-alt"></i> crear una asesoría </a>
             </div>
         </div>
@@ -72,6 +79,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Acciones:</h6>
                 <a class="collapse-item" href="#"><i class="fa fa-eye"></i> ver todas los cursos  </a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
                 <a class="collapse-item" href="{{ route('course.create') }}"><i class="fa fa-pencil-alt"></i> crear un curso </a>
             </div>
         </div>
@@ -84,7 +94,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('pqr.index') }}">
             <i class="fas fa-bomb"></i>
             <span>Peticiones, quejas y reclamos </span></a>
     </li>
@@ -122,8 +132,8 @@
                 <a class="collapse-item" href="{{ route('teachers.index') }}">
                     <i class="fa fa-eye"></i>Ver todos
                 </a>
-                <a class="collapse-item" href="#"><i class="fa fa-exclamation"></i> Pendientes </a>
-                <a class="collapse-item" href="#"><i class="fa fa-check"></i> Aprobados </a>
+                <a class="collapse-item" href="{{ route('teacher.status', $status = 'request') }}"><i class="fa fa-exclamation"></i> Pendientes </a>
+                <a class="collapse-item" href="{{ route('teacher.status', $status = 'verified') }}"><i class="fa fa-check"></i> Aprobados </a>
             </div>
         </div>
     </li>
@@ -152,6 +162,12 @@
         <a class="nav-link" href="{{ route('level.index') }}">
             <i class="fas fa-list-ol"></i>
             <span>Niveles</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('zone.index') }}">
+            <i class="fas fa-map"></i>
+            <span>Zonas</span></a>
     </li>
 
     <!-- Divider -->

@@ -35,9 +35,8 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="body">Detalle  :</label>
-                                <texasesoría rows="10" name="body" id="body" class="form-control form-control-user"
-                                          placeholder="Ingresa el contendido completo de la publicación">{{ old('body',$advisory->body) }}</texasesoría>
-                                {!! $errors->first('body', '<span class="form-text text-danger">:message</span>') !!}
+                                <textarea rows="10" name="body" id="editor" class="form-control" placeholder="Ingresa el contendido completo de la asesoría">{{ old('body', $advisory->body) }}</textarea>
+                                {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
                             </div>
                         </div>
                             <button type="submit" class="btn btn-success btn-block">Guardar</button>

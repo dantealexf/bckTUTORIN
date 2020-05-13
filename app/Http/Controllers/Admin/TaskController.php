@@ -23,6 +23,14 @@ class TaskController extends Controller
         return view('admin.tasks.index',compact('tasks'));
     }
 
+    public function showStatuses($status)
+    {
+        $tasks = (empty($status)) ?  null : Task::where('status',$status)->get();
+        if($tasks == null)
+            abort(404);
+        return view('admin.tasks.index',compact('tasks'));
+    }
+
     public function create()
     {
 
@@ -44,7 +52,6 @@ class TaskController extends Controller
            'title'       => $request->get('title'),
            'delivery'    => $request->get('delivery'),
            'price'       => $request->get('price'),
-           'excerpt'     => $request->get('excerpt'),
            'body'        => $request->get('body'),
        ]);
 
@@ -73,7 +80,7 @@ class TaskController extends Controller
         {
             $document = $request->file('document')->store('public/task');
             $task->file()->create([
-                'url' => Storage::url($document)
+                'url'  => Storage::url($document),
             ]);
         }
         return redirect()->route('task.index')->withFlash('Tarea creada');
@@ -93,7 +100,6 @@ class TaskController extends Controller
     {
         $task->update([
             'title'   => $request->get('title'),
-            'excerpt' => $request->get('excerpt'),
             'body'    => $request->get('body'),
         ]);
 

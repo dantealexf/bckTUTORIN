@@ -23,6 +23,8 @@ class CreateProfilesTable extends Migration
             $table->integer('valoration')->default(0);
             $table->string('message')->default('');
             $table->boolean('viewed')->default(true);
+            $table->boolean('verified')->default(false);
+            $table->boolean('request')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

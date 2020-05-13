@@ -8,8 +8,6 @@
         Esta es la vista desde el administrador todos los datos que se muestran aquí no serán visibles para todos los
         clientes del sistema.
     </p>
-
-
     <div class="row">
         <div class="col-md-8">
             <div class="card shadow mb-4">

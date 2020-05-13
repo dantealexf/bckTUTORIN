@@ -17,14 +17,15 @@ class CreateCoursesTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('category_id')->nullable()->unsigned();
 
             $table->string('title');
             $table->string('url')->unique()->nullable();
             $table->date('delivery')->default(now()->addDay()->format('d-m-y'));
             $table->double('price')->default(0);
-            $table->text('excerpt')->nullable();
+            $table->mediumText('excerpt')->nullable();
             $table->mediumText('body')->nullable();
+            $table->integer('total')->default(1);
 
             $table->timestamps();
 
@@ -33,7 +34,7 @@ class CreateCoursesTable extends Migration
                 ->onUpdate('cascade');
 
             $table->foreign('category_id')->references('id')->on('categories')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
         });
     }

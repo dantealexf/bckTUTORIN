@@ -17,13 +17,14 @@ class CreateAdvisoriesTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
-            $table->bigInteger('level_id')->unsigned();
+            $table->bigInteger('category_id')->nullable()->unsigned();
+            $table->bigInteger('level_id')->nullable()->unsigned();
 
             $table->string('title');
             $table->string('url')->unique()->nullable();
             $table->date('delivery')->default(now()->addDay()->format('d-m-y'));
             $table->double('price')->default(0);
+            $table->boolean('virtual');
             $table->integer('hours')->default(1);
             $table->mediumText('body')->nullable();
             $table->enum('status', ['PUBLISHED', 'DONE','PENDING'])->default('PUBLISHED');
@@ -35,11 +36,11 @@ class CreateAdvisoriesTable extends Migration
                 ->onUpdate('cascade');
 
             $table->foreign('category_id')->references('id')->on('categories')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->foreign('level_id')->references('id')->on('levels')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
         });
     }

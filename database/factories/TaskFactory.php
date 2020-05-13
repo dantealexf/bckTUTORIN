@@ -16,5 +16,6 @@ $factory->define(Task::class, function (Faker $faker) {
         'delivery'      => $faker->dateTimeBetween('now', '+1 years'),
         'price' 		=> $faker->numberBetween(10000,1000000),
         'body' 			=> $faker->text(500),
+        'status'        => $faker->randomElement(['PUBLISHED', 'DONE','PENDING'])
     ];
 });
