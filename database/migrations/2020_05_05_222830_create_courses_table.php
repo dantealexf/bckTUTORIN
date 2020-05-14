@@ -23,7 +23,6 @@ class CreateCoursesTable extends Migration
             $table->string('url')->unique()->nullable();
             $table->date('delivery')->default(now()->addDay()->format('d-m-y'));
             $table->double('price')->default(0);
-            $table->mediumText('excerpt')->nullable();
             $table->mediumText('body')->nullable();
             $table->integer('total')->default(1);
 

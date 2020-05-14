@@ -20,39 +20,28 @@
                         <div class="form-group">
                             <label for="title">Titulo :</label>
                             <input type="text" class="form-control form-control-user" id="title" name="title"
-                                   placeholder="Ingrese un título para la asesoria ..." value="{{ old('title') }}">
+                                   placeholder="Ingrese un título para el curso ..." value="{{ old('title') }}">
                             {!! $errors->first('title', '<span class="form-text text-danger">:message</span>') !!}
                         </div>
                         <div class="form-group">
-                            <label for="delivery">Fecha en la que necesita la asesoría :</label>
+                            <label for="delivery">Fecha en la que necesita curso :</label>
                             <input name="delivery" id="delivery" class="form-control form-control-user datepicker" placeholder="mm/dd/año" data-date-format="mm/dd/yyyy" value="{{ old('delivery') }}">
                             {!! $errors->first('delivery', '<span class="form-text text-danger">:message</span>') !!}
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-4">
-                                <label for="price">Precio x Hora:</label>
+                            <div class="col-md-6">
+                                <label for="price">Precio x unidad:</label>
                                 <input type="number" name="price" id="price" class="form-control form-control-user" value="{{ old('price',25000) }}" min="25000"/>
                                 {!! $errors->first('price', '<span class="form-text text-danger">:message</span>') !!}
                             </div>
-                            <div class="col-md-3">
-                                <label for="hours">Cantidad de horas:</label>
-                                <input type="number" name="hours" id="hours" class="form-control form-control-user" value="{{ old('hours',1) }}" min="1"/>
-                                {!! $errors->first('hours', '<span class="form-text text-danger">:message</span>') !!}
-                            </div>
-                            <div class="col-md-5 d-flex align-items-center">
-                                <span>Tipo de asesoría</span>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="virtual" name="type" value="0" class="custom-control-input" {{ (old('type') == 0 ) ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="virtual">Virtual</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="domicilio" name="type" value="1" class="custom-control-input" {{ (old('type') == 1 ) ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="domicilio">Domicilió</label>
-                                </div>
+                            <div class="col-md-6">
+                                <label for="share">Cupos:</label>
+                                <input type="number" name="share" id="share" class="form-control form-control-user" value="{{ old('share',1) }}" min="1"/>
+                                {!! $errors->first('share', '<span class="form-text text-danger">:message</span>') !!}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="body">¿Qué se va a realizar en la asesoría? :</label>
+                            <label for="body">¿Qué se va a realizar en curso? :</label>
                             <textarea rows="10" name="body" id="body" class="form-control form-control-user" placeholder="Ingresa el contendido completo de la publicación">{{ old('body') }}</textarea>
                             {!! $errors->first('body', '<span class="form-text text-danger">:message</span>') !!}
                         </div>
@@ -85,7 +74,7 @@
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Clasificación de la asesoría</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Clasificación del curso</h6>
                     </div>
                     <div class="card-body">
                         <label for="level">Nivel:</label>
