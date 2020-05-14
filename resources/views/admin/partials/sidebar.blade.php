@@ -22,7 +22,8 @@
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
+
+<!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -32,7 +33,8 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-list"></i>
             <span>Tareas</span>
         </a>
@@ -42,9 +44,12 @@
                 <a class="collapse-item" href="{{ route('task.index') }}">
                     <i class="fa fa-eye"></i> Ver todas las tareas
                 </a>
-                <a class="collapse-item" href="{{ route('task.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
-                <a class="collapse-item" href="{{ route('task.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
-                <a class="collapse-item" href="{{ route('task.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'PUBLISHED') }}"><i
+                        class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'PENDING') }}"><i
+                        class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('task.status', $status = 'DONE') }}"><i
+                        class="fa fa-check"></i> ver hecho</a>
                 <a class="collapse-item" href="{{ route('task.create') }}">
                     <i class="fa fa-pencil-alt"></i> Crear una tarea
                 </a>
@@ -54,35 +59,46 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#consulting" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#consulting" aria-expanded="true"
+           aria-controls="collapseUtilities">
             <i class="fas fa-concierge-bell"></i>
             <span>Asesorías</span>
         </a>
         <div id="consulting" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Acciones:</h6>
-                <a class="collapse-item" href="{{ route('advisory.index') }}"><i class="fa fa-eye"></i> ver todas las asesorías  </a>
-                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
-                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
-                <a class="collapse-item" href="{{ route('advisory.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
-                <a class="collapse-item" href="{{ route('advisory.create') }}"><i class="fa fa-pencil-alt"></i> crear una asesoría </a>
+                <a class="collapse-item" href="{{ route('advisory.index') }}"><i class="fa fa-eye"></i> ver todas
+                    las asesorías </a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PUBLISHED') }}"><i
+                        class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'PENDING') }}"><i
+                        class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('advisory.status', $status = 'DONE') }}"><i
+                        class="fa fa-check"></i> ver hecho</a>
+                <a class="collapse-item" href="{{ route('advisory.create') }}"><i class="fa fa-pencil-alt"></i>
+                    crear una asesoría </a>
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#courses_link" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#courses_link"
+           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Cursos</span>
         </a>
         <div id="courses_link" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Acciones:</h6>
-                <a class="collapse-item" href="#"><i class="fa fa-eye"></i> ver todas los cursos  </a>
-                <a class="collapse-item" href="{{ route('courses.status', $status = 'PUBLISHED') }}"><i class="fa fa-print"></i> ver publicadas</a>
-                <a class="collapse-item" href="{{ route('courses.status', $status = 'PENDING') }}"><i class="fa fa-exclamation"></i> ver pendientes</a>
-                <a class="collapse-item" href="{{ route('courses.status', $status = 'DONE') }}"><i class="fa fa-check"></i> ver hecho</a>
-                <a class="collapse-item" href="{{ route('course.create') }}"><i class="fa fa-pencil-alt"></i> crear un curso </a>
+                <a class="collapse-item" href="#"><i class="fa fa-eye"></i> ver todas los cursos </a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'PUBLISHED') }}"><i
+                        class="fa fa-print"></i> ver publicadas</a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'PENDING') }}"><i
+                        class="fa fa-exclamation"></i> ver pendientes</a>
+                <a class="collapse-item" href="{{ route('courses.status', $status = 'DONE') }}"><i
+                        class="fa fa-check"></i> ver hecho</a>
+                <a class="collapse-item" href="{{ route('course.create') }}"><i class="fa fa-pencil-alt"></i> crear
+                    un curso </a>
             </div>
         </div>
     </li>
@@ -109,20 +125,24 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-user-graduate"></i>
             <span>Estudiantes</span>
         </a>
         <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('students.index') }}"><i class="fa fa-eye"></i> ver todos </a>
-                <a class="collapse-item" href="{{ route('students.create') }}"><i class="fa fa-pencil-alt"></i> crear  </a>
+                <a class="collapse-item" href="{{ route('students.index') }}"><i class="fa fa-eye"></i> ver todos
+                </a>
+                <a class="collapse-item" href="{{ route('students.create') }}"><i class="fa fa-pencil-alt"></i>
+                    crear </a>
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#teacher" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#teacher" aria-expanded="true"
+           aria-controls="collapseUtilities">
             <i class="fas fa-user-tie"></i>
             <span>Tutores</span>
         </a>
@@ -132,8 +152,10 @@
                 <a class="collapse-item" href="{{ route('teachers.index') }}">
                     <i class="fa fa-eye"></i>Ver todos
                 </a>
-                <a class="collapse-item" href="{{ route('teacher.status', $status = 'request') }}"><i class="fa fa-exclamation"></i> Pendientes </a>
-                <a class="collapse-item" href="{{ route('teacher.status', $status = 'verified') }}"><i class="fa fa-check"></i> Aprobados </a>
+                <a class="collapse-item" href="{{ route('teacher.status', $status = 'request') }}"><i
+                        class="fa fa-exclamation"></i> Pendientes </a>
+                <a class="collapse-item" href="{{ route('teacher.status', $status = 'verified') }}"><i
+                        class="fa fa-check"></i> Aprobados </a>
             </div>
         </div>
     </li>
@@ -172,7 +194,6 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-
 
 
     <!-- Sidebar Toggler (Sidebar) -->
