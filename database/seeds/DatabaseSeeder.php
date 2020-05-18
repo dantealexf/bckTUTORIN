@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         factory(App\Models\Tag::class, 40)->create();
         factory(App\Models\Category::class, 40)->create();
         factory(App\Models\Level::class, 3)->create();
@@ -86,8 +87,8 @@ class DatabaseSeeder extends Seeder
             'birthday'          => Carbon::parse('26.12.1993'),
             'gender'            => 0,
             'mobile'            => '3123036763',
-            'active'            => 0,
-            'admin'             => 0,
+            'active'            => true,
+            'admin'             => true,
         ]);
 
         $dante = \App\User::find(101);

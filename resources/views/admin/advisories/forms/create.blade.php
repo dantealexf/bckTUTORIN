@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-4">
-                                <label for="price">Precio x Hora:</label>
+                                <label for="price">Precio total:</label>
                                 <input type="number" name="price" id="price" class="form-control form-control-user" value="{{ old('price',25000) }}" min="25000"/>
                                 {!! $errors->first('price', '<span class="form-text text-danger">:message</span>') !!}
                             </div>

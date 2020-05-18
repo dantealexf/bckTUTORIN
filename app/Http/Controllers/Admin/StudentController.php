@@ -22,7 +22,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = User::where('admin','=',1)->orderBy('id','DESC')->get();
+        $students = User::where('admin',false)->orderBy('id','DESC')->get();
         return view('admin.students.index',compact('students'));
     }
 
@@ -42,7 +42,7 @@ class StudentController extends Controller
             'name'              => $request->get('name'),
             'email'             => $request->get('email'),
             'email_verified_at' => now(),
-            'password'          => Hash::make($request->get('password')),
+            'password'          => $request->get('password'),
             'birthday'          => $request->get('birthday'),
             'gender'            => $request->get('gender'),
             'mobile'            => $request->get('mobile'),
@@ -104,25 +104,10 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StudentUpdateRequest $request, User $user)
     {
 
-       $user = User::find($id);
-
-        $data = $request->validate([
-            'name'                  => 'required|string|max:255',
-            'email'                 => ['required',Rule::unique('users')->ignore($user->id)],
-            'gender'                => 'required',
-            'mobile'                => ['required',Rule::unique('users')->ignore($user->id)],
-            'state'                 => 'required',
-            'city'                  => 'required',
-            'address'               => 'required',
-            'photo'                 => 'mimes:jpeg,jpg,png,gif|max:2048',
-            'tags'                  => 'array|size:7',
-            'categories'            => 'array|size:3',
-        ]);
-
-        $user->update([
+        /*$user->update([
             'name'              => $request->get('name'),
             'email'             => $request->get('email'),
             'birthday'          => $request->get('birthday'),
@@ -130,7 +115,13 @@ class StudentController extends Controller
             'mobile'            => $request->get('mobile'),
             'active'            => 0,
             'admin'             => 1,
+        ]);*/
+
+        $user->update($request->except(['state','city','address','categories','tags','avatar']));
+        $user->update([
+            'verified' => false
         ]);
+
 
         $categories = $request->get('categories');
         $tags = $request->get('tags');
@@ -150,6 +141,20 @@ class StudentController extends Controller
             'city'       => $request->get('city'),
             'address'    => $request->get('address'),
         ]);
+
+        if($request->file('avatar'))
+        {
+            $photo = $request->file('avatar')->store('public/avatar');
+            if ($user->image != null){
+                $user->image()->update([
+                    'url' => Storage::url($photo)
+                ]);
+            }else{
+                $user->image()->create([
+                    'url' => Storage::url($photo)
+                ]);
+            }
+        }
 
         return redirect()->route('students.index')->withFlash('Estudiante modificado');
     }

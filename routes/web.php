@@ -15,7 +15,8 @@ Route::group([
     Route::get('/', function (){
         return redirect('/home');
     })->name('inicio');
-    Route::resource('students','StudentController');
+    Route::resource('students','StudentController')->except('update');
+    Route::put('students/{user:id}','StudentController@update')->name('students.update');
     Route::resource('teachers','TeacherController');
 
     Route::post('fileDocument','TeacherController@addFile')->name('teachers.file');
@@ -41,6 +42,15 @@ Route::group([
 
 
     /*Route::get()->name('tags.tasks');*/
+
+    Route::post('admin','AdminController@store')->name('admin.store');
+    Route::get('admin','AdminController@index')->name('admin.index');
+    Route::get('admin/create','AdminController@create')->name('admin.create');
+    Route::delete('admin/{user:id}','AdminController@destroy')->name('admin.destroy');
+    Route::put('admin/{user:id}','AdminController@update')->name('admin.update');
+    Route::get('admin/{user:id}','AdminController@show')->name('admin.show');
+    Route::get('admin/{user:id}/edit','AdminController@edit')->name('admin.edit');
+
 
     Route::delete('comment/{comment}','AdminController@deleteComment')->name('comment.delete');
     Route::delete('offer/{offer}','AdminController@deleteOffer')->name('offer.delete');

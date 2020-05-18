@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Level;
 use App\Models\Tag;
 use App\Models\Zone;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,13 +20,23 @@ class AdvisoryController extends Controller
 
     public function index()
     {
-        $advisories = Advisory::all();
+        if (auth()->user()->admin)
+        {
+            $advisories = Advisory::all();
+        }else{
+            $advisories = auth()->user()->advisory;
+        }
         return view('admin.advisories.index',compact('advisories'));
     }
 
     public function showStatuses($status)
     {
-        $advisories = (empty($status)) ?  null : Advisory::where('status',$status)->get();
+        if (auth()->user()->admin)
+        {
+            $advisories = (empty($status)) ?  null : Advisory::where('status',$status)->get();
+        }else{
+            $advisories = (empty($status)) ?  null : Advisory::where('status',$status)->where('user_id',auth()->user()->id)->get();
+        }
         if($advisories == null)
             abort(404);
         return view('admin.advisories.index',compact('advisories'));
@@ -33,6 +44,8 @@ class AdvisoryController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Advisory::class);
+
         return view('admin.advisories.forms.create',[
             'user'       => Auth::user(),
             'levels'     => Level::all(),
@@ -93,12 +106,24 @@ class AdvisoryController extends Controller
 
     public function show(Advisory $advisory)
     {
-        return view('admin.advisories.forms.show',compact('advisory'));
+        $user = Auth::user();
+        $view = $user->can('view',$advisory);
+        if($view)
+        {
+            return view('admin.advisories.forms.show', compact('advisory'));
+        }
+        return abort('403');
     }
 
     public function edit(Advisory $advisory)
     {
-        return view('admin.advisories.forms.update',compact('advisory'));
+        $user = Auth::user();
+        $view = $user->can('update',$advisory);
+        if($view)
+        {
+            return view('admin.advisories.forms.update',compact('advisory'));
+        }
+        return abort('403');
     }
 
     public function update(AdvisoryUpdateRequest $request, Advisory $advisory)

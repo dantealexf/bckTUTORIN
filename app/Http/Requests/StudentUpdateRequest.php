@@ -15,17 +15,30 @@ class StudentUpdateRequest extends FormRequest
 
     public function rules()
     {
-        /*return [
+        $rules = [
             'name'                  =>'required|string|max:255',
-            'email'                 => 'required|email|unique:users,email,'. $this->request->get('email'),
-            'gender'                =>'required',
-            'password'              =>'required|string|confirmed',
-            'mobile'                =>'required|unique:users,mobile,' . $this->request->get('mobile'),
-            'state'                 =>'required',
-            'city'                  =>'required',
-            'address'               =>'required',
-        ];*/
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore( $this->route('user')->id )
+            ],
+            'gender'                => 'required',
+            'mobile' => [
+                'required',
+                Rule::unique('users')->ignore( $this->route('user')->id )
+            ],
+            'state'                 => 'required',
+            'city'                  => 'required',
+            'address'               => 'required',
+            'avatar'                 => 'mimes:jpeg,jpg,png,gif|max:2048',
+            'tags'                  => 'array|max:7',
+            'categories'            => 'array|max:3',
+        ];
 
+        if ($this->filled('password'))
+        {
+            $rules['password'] = ['confirmed', 'min:6'];
+        }
 
+        return $rules;
     }
 }

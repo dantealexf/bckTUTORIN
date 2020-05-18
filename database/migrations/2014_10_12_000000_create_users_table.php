@@ -22,8 +22,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('birthday')->nullable();
             $table->tinyInteger('gender'); // 0 masculino / 1 femenino
             $table->string('mobile')->unique();
-            $table->tinyInteger('active'); // 0 activado / 1 desactivado
-            $table->tinyInteger('admin'); // 0 admin  / 1 cliente
+            $table->tinyInteger('active')->default(true); // 0 activado / 1 desactivado
+            $table->tinyInteger('admin')->default(false); // 0 admin  / 1 cliente
             $table->rememberToken();
             $table->timestamps();
         });

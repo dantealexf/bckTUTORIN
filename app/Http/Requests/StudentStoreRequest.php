@@ -18,7 +18,7 @@ class StudentStoreRequest extends FormRequest
             'name'                  =>'required|string|max:255',
             'email'                 =>'required|string|email|max:255|unique:users',
             'gender'                =>'required',
-            'password'              =>'required|string|confirmed',
+            'password'              =>'required|string|confirmed|min:6',
             'mobile'                =>'required|unique:users',
             'state'                 =>'required',
             'city'                  =>'required',
